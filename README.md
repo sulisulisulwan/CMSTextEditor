@@ -29,3 +29,13 @@ const MyComponent = () => {
   )
 }
 ```
+
+HTMLTextParser 
+
+HTMLTextParser.parseToComponents()
+  Turns html strings into normalized CMSTextEditor components where all line breaks and divs become paragraphs.
+
+HTMLTextParser.parseToHtml()
+  Turns CMSTextEditor components back into a single html string
+
+Intended usage of the parser is storage of documents as JSON
