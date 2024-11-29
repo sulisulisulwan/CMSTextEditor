@@ -5,7 +5,7 @@ const __dirname = path.dirname(url.fileURLToPath(import.meta.url))
 
 const testAppConfig = {
   mode: 'development',
-  entry: __dirname + '/src/testApp.tsx',
+  entry: path.resolve(__dirname , './testApp/src/testApp.tsx'),
   module: {
     rules: [
       {
@@ -26,8 +26,8 @@ const testAppConfig = {
     ]
   },
   output: {
-    path: path.resolve(__dirname, "dist"),
-    publicPath: path.resolve(__dirname, "./dist/"),
+    path: path.resolve(__dirname, "./testApp/dist"),
+    publicPath: path.resolve(__dirname, "./testApp/dist"),
   },
   resolve: {
     extensions: [".js", ".jsx", ".tsx", ".ts"]

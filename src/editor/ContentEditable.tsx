@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { deepEqualStyles, getFormatFromCaretLocation, normalizeHtml, replaceCaret } from './helpers/helpers';
+import { deepEqualStyles, normalizeHtml, replaceCaret } from './helpers/helpers.js';
 
 /**
  * A simple component for an html element with editable contents.

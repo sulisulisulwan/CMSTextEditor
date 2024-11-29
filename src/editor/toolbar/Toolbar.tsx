@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { iToolbarOptions } from '../../types/toolbar'
-import iconSrcs from './defaultToolbarIconMap'
-import ToolbarIcon from './ToolbarIcon'
+import iconSrcs from './defaultToolbarIconMap.js'
+import ToolbarIcon from './ToolbarIcon.js'
 
 interface iToolbarProps {
   toolbarOptions: iToolbarOptions

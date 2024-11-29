@@ -8,15 +8,20 @@ class ComponentsToHTML {
     return html
   }
 
-  static parseComponent(component: iComponent): string | iComponent[] {
+  static parseComponent(component: iComponent): string | iComponent | iComponent[] {
     if (component.type === 'text') {
       return component.content
     }
 
     if (component.content) {
       let tagContent = '';
-      (component.content as iComponent[]).forEach((child: iComponent) => tagContent += ComponentsToHTML.parseComponent(child))
-      return `<${component.type}>${tagContent}</${component.type}>`
+
+      if (Array.isArray(component.content)) {
+        (component.content as iComponent[]).forEach((child: iComponent) => tagContent += ComponentsToHTML.parseComponent(child))
+        return `<${component.type}>${tagContent}</${component.type}>`
+      }
+      
+      tagContent += ComponentsToHTML.parseComponent(component.content as unknown as iComponent)
     }
 
     return `<${component.type}/>`

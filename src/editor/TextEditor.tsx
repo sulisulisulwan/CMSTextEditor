@@ -1,9 +1,9 @@
 import * as React from 'react'
-import ContentEditable from './ContentEditable'
+import ContentEditable from './ContentEditable.js'
 // import ContentEditable from './contentEditableClass'
 import { iToolbarOptions } from '../types/toolbar'
-import Toolbar from './toolbar/Toolbar'
-import { formatToNodeNameMap, getFormatFromCaretLocation, keyToFormatMap } from './helpers/helpers'
+import Toolbar from './toolbar/Toolbar.js'
+import { formatToNodeNameMap, getFormatFromCaretLocation, keyToFormatMap } from './helpers/helpers.js'
 
 interface iTextEditorProps {
   html: string

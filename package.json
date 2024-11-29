@@ -1,14 +1,22 @@
 {
-  "name": "richtexteditor",
-  "version": "1.0.0",
-  "main": "webpack.config.js",
+  "name": "texteditorforcms",
+  "version": "1.0.10",
+  "main": "lib/index.js",
   "type": "module",
   "directories": {
     "lib": "lib"
   },
   "scripts": {
-    "start": "node ./testServer/app.js",
-    "buildTestApp": "webpack -w"
+    "start": "node ./testApp/testServer/app.js",
+    "build": "tsc",
+    "buildTestApp": "webpack -w",
+    "pub:patch": "npm run vp+; npm publish",
+    "vmaj+": "node updateVersion.js major increment",
+    "vmaj-": "node updateVersion.js major decrement",
+    "vmin+": "node updateVersion.js minor increment",
+    "vmin-": "node updateVersion.js minor decrement",
+    "vp+": "node updateVersion.js patch increment",
+    "vp-": "node updateVersion.js patch decrement"
   },
   "author": "",
   "license": "ISC",

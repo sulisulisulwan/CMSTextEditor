@@ -1,5 +1,5 @@
 import { iComponent } from "../types/component"
-import { iHTMLTextParserConfig } from "./HTMLTextParser"
+import { iHTMLTextParserConfig } from "./HTMLTextParser.js"
 
 
 
