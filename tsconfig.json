@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "./lib/",
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "ES2015",
+    "jsx": "react",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "rootDir": "./src",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["./node_modules/**/*"]
+}

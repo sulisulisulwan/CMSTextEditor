@@ -1,0 +1,31 @@
+{
+  "name": "richtexteditor",
+  "version": "1.0.0",
+  "main": "webpack.config.js",
+  "type": "module",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": "node ./testServer/app.js",
+    "buildTestApp": "webpack -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.25.9",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "babel-loader": "^9.2.1",
+    "express": "^4.21.1",
+    "react": "^18.3.1",
+    "react-contenteditable": "^3.3.7",
+    "react-dom": "^18.3.1",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.7.2",
+    "webpack": "^5.96.1",
+    "webpack-cli": "^5.1.4"
+  }
+}
