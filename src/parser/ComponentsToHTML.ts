@@ -9,7 +9,6 @@ class ComponentsToHTML {
   }
 
   static parseComponent(component: iComponent): string | iComponent | iComponent[] {
-    console.log(component)
     if (component.type === 'text') {
       return component.content
     }
