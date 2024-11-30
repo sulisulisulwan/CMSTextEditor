@@ -1,7 +1,9 @@
 import * as React from 'react'
 import * as ReactDom from 'react-dom/client'
-import TextEditor from '../../src/editor/TextEditor'
-import HTMLTextParser from '../../lib/parser/HTMLTextParser.js'
+// import TextEditor from '../../src/editor/TextEditor'
+// import HTMLTextParser from '../../lib/parser/HTMLTextParser'
+import { TextEditor, HTMLTextParser } from '../../lib'
+console.log(TextEditor)
 
 const parser = new HTMLTextParser({
   groupParagraphsAsDiv: true
@@ -14,7 +16,6 @@ const App = () => {
     const components = parser.parseToComponents(html)
     const newHtml = parser.parseToHtml(components)
     setHtml(newHtml)
-    console.log('saved!')
   }
 
   return (
@@ -29,6 +30,7 @@ const App = () => {
           height: 400,
           width: 400,
         }}
+        toolbar={null}
       />
     </>
   )

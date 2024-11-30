@@ -1,7 +1,6 @@
 import * as React from 'react'
-import ContentEditable from './ContentEditable.js'
-// import ContentEditable from './contentEditableClass'
 import { iToolbarOptions } from '../types/toolbar'
+import ContentEditable from './ContentEditable.js'
 import Toolbar from './toolbar/Toolbar.js'
 import { formatToNodeNameMap, getFormatFromCaretLocation, keyToFormatMap } from './helpers/helpers.js'
 

@@ -9,6 +9,7 @@ class ComponentsToHTML {
   }
 
   static parseComponent(component: iComponent): string | iComponent | iComponent[] {
+    console.log(component)
     if (component.type === 'text') {
       return component.content
     }
@@ -17,11 +18,11 @@ class ComponentsToHTML {
       let tagContent = '';
 
       if (Array.isArray(component.content)) {
-        (component.content as iComponent[]).forEach((child: iComponent) => tagContent += ComponentsToHTML.parseComponent(child))
-        return `<${component.type}>${tagContent}</${component.type}>`
+        (component.content as iComponent[]).reduce((childrenString, child: iComponent) => childrenString += ComponentsToHTML.parseComponent(child), tagContent)
+        const toReturn = `<${component.type}>${tagContent}</${component.type}>`
+        return toReturn
       }
-      
-      tagContent += ComponentsToHTML.parseComponent(component.content as unknown as iComponent)
+      return `<${component.type}>${tagContent += ComponentsToHTML.parseComponent(component.content as unknown as iComponent)}</${component.type}>`
     }
 
     return `<${component.type}/>`
