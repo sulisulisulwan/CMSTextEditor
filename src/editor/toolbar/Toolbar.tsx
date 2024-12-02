@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { iToolbarOptions } from '../../types/toolbar'
-import iconSrcs from './defaultToolbarIconMap.js'
 import ToolbarIcon from './ToolbarIcon.js'
 
 interface iToolbarProps {
@@ -14,22 +13,21 @@ const Toolbar = ({ toolbarOptions, setToolbarStatus, toolbarStatus }: iToolbarPr
   return (
     <>{toolbarOptions.icons.map((iconName: string, i: number) => {
       return (
-        iconSrcs[iconName] ? 
-          <ToolbarIcon 
-            key={iconName + i}
-            src={iconSrcs[iconName]} 
-            style={toolbarOptions.iconStyle} 
-            iconOnClick={() => {
-              setToolbarStatus((prevStatus: any) => ({
-                ...prevStatus,
-                [iconName]: {
-                  selected: !prevStatus[iconName].selected,
-                }
-              }))
-            }}
-            isActivated={toolbarStatus[iconName].selected}
-          /> 
-          : null)
+        <ToolbarIcon 
+          key={iconName + i}
+          src={toolbarOptions.iconImages[iconName]} 
+          style={toolbarOptions.iconStyle} 
+          iconOnClick={() => {
+            setToolbarStatus((prevStatus: any) => ({
+              ...prevStatus,
+              [iconName]: {
+                selected: !prevStatus[iconName].selected,
+              }
+            }))
+          }}
+          isActivated={toolbarStatus[iconName].selected}
+        /> 
+      )
     })}</>
   )
 }

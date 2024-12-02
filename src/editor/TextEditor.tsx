@@ -3,6 +3,7 @@ import { iToolbarOptions } from '../types/toolbar'
 import ContentEditable from './ContentEditable.js'
 import Toolbar from './toolbar/Toolbar.js'
 import { formatToNodeNameMap, getFormatFromCaretLocation, keyToFormatMap } from './helpers/helpers.js'
+import defaultIconSrcs from './toolbar/defaultToolbarIconMap.js'
 
 interface iTextEditorProps {
   html: string
@@ -21,6 +22,7 @@ const TextEditor = ({ html, setHtml, style, toolbar }: iTextEditorProps) => {
     disabled: false,
     orientation: 'vertical',
     icons: ['bold', 'italic', 'underline'],
+    iconImages: defaultIconSrcs,
     iconStyle: {
       height: 15,
       width: 15,

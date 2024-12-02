@@ -33,13 +33,20 @@ const ToolbarIcon = ({ src, style, iconOnClick, isActivated }: iToolbarIconProps
   delete style.onHover
 
   return (
-    <img 
-      onClick={iconOnClick}
-      onMouseEnter={() => { setIsHovering(true)} }
-      onMouseLeave={() => { setIsHovering(false)} }
-      src={src} 
-      style={computedStyle}
-    />
+    <button style={{
+      background: 'none',
+      padding: 0,
+      margin: 0,
+      border: 0
+    }}>
+      <img 
+        onClick={iconOnClick}
+        onMouseEnter={() => { setIsHovering(true)} }
+        onMouseLeave={() => { setIsHovering(false)} }
+        src={src} 
+        style={computedStyle}
+      />
+    </button>
   )
 }
 export default ToolbarIcon

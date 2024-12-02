@@ -1,12 +1,12 @@
 
 
 const defaultIconSrcs: Record<string, string> = {
-  'bold' : 'assets/bold.png',
-  'underline' : 'assets/underline.png',
-  'italic' : 'assets/italic.png',
-  'justifyLeft' : 'assets/justify-left.png',
-  'justifyRight' : 'assets/justify-right.png',
-  'justifyCenter' : 'assets/justify-center.png',
+  'bold' : 'http://localhost:1337/v2/cms-assets/icons/bold.png',
+  'underline' : 'http://localhost:1337/v2/cms-assets/icons/.png',
+  'italic' : 'http://localhost:1337/v2/cms-assets/icons/italic.png',
+  'justifyLeft' : 'http://localhost:1337/v2/cms-assets/icons/justify-left.png',
+  'justifyRight' : 'http://localhost:1337/v2/cms-assets/icons/justify-right.png',
+  'justifyCenter' : 'http://localhost:1337/v2/cms-assets/icons/justify-center.png',
 }
 
 export default defaultIconSrcs

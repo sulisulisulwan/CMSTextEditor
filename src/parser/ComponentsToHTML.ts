@@ -13,15 +13,13 @@ class ComponentsToHTML {
       return component.content
     }
 
-    if (component.content) {
-      let tagContent = '';
+    if (component.content && Array.isArray(component.content)) {
+      let tagContent = (component.content as iComponent[]).reduce((childrenString, child: iComponent) => childrenString += ComponentsToHTML.parseComponent(child), '')
+      return `<${component.type}>${tagContent}</${component.type}>`
+    }
 
-      if (Array.isArray(component.content)) {
-        (component.content as iComponent[]).reduce((childrenString, child: iComponent) => childrenString += ComponentsToHTML.parseComponent(child), tagContent)
-        const toReturn = `<${component.type}>${tagContent}</${component.type}>`
-        return toReturn
-      }
-      return `<${component.type}>${tagContent += ComponentsToHTML.parseComponent(component.content as unknown as iComponent)}</${component.type}>`
+    if (component.content) {
+      return `<${component.type}>${ComponentsToHTML.parseComponent(component.content as unknown as iComponent)}</${component.type}>`
     }
 
     return `<${component.type}/>`
