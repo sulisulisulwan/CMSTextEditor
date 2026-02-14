@@ -1,0 +1,1 @@
+export type iToolbarStatus = Record<string, { selected: boolean }>

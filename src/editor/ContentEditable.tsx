@@ -50,7 +50,7 @@ const shouldComponentUpdate = (props: Props, nextProps: Props) => {
 
 const ContentEditableFunction = React.memo(
   (props: Props) => {
-    const { html, innerref, tagName } = props
+    const { html, innerref, tagName, style } = props
     let lastHtml = html
 
     // el will 
@@ -111,6 +111,7 @@ const ContentEditableFunction = React.memo(
       tagName || 'div',
       {
         ...copiedProps,
+        style,
         ref: typeof innerref === 'function' ? (current: HTMLElement): void => {
           innerref(current)
           el.current = current

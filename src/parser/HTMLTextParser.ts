@@ -31,7 +31,6 @@ class HTMLTextParser {
 }
 
 const createParsedComponent = (reactLibrary: any, component: iComponent, index: number): any => {
-
   if (component.type === 'text') {
     return component.content
   }
@@ -40,7 +39,7 @@ const createParsedComponent = (reactLibrary: any, component: iComponent, index: 
     component.content.map((childComponent: any, i: number): any => createParsedComponent(reactLibrary, childComponent, i)) 
     : component.content ? createParsedComponent(reactLibrary, component.content as unknown as iComponent, index)
     : null
-  
+
   return reactLibrary.createElement(component.type, { key: component.type + index + Math.random() }, childrenComponents)
 }
 

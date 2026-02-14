@@ -1,9 +1,6 @@
 import * as React from 'react'
 import * as ReactDom from 'react-dom/client'
-// import TextEditor from '../../src/editor/TextEditor'
-// import HTMLTextParser from '../../lib/parser/HTMLTextParser'
-import { TextEditor, HTMLTextParser } from '../../lib'
-console.log(TextEditor)
+import { TextEditor, HTMLTextParser } from '../../lib/index.js'
 
 const parser = new HTMLTextParser({
   groupParagraphsAsDiv: true
@@ -38,5 +35,5 @@ const App = () => {
 
 const container = document.getElementById('app')
 
-const root = ReactDom.createRoot(container as ReactDom.Container)
+const root = ReactDom.createRoot(container)
 root.render(<App/>)

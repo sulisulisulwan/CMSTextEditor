@@ -1,32 +1,41 @@
 
-const onClickBold = () => {
-  console.log('clicked bold')
+const onClickBold = (toggled: boolean) => {
+  document.execCommand('bold')
 }
 
 const onClickUnderline = () => {
-  console.log('clicked underline')
+  document.execCommand('underline')
 }
 
 const onClickItalic = () => {
-  console.log('clicked italic')
+  document.execCommand('italic')
 }
 
 const onClickJustifyLeft = () => {
-  console.log('clicked justify left')
+  document.execCommand('justifyLeft')
 }
 
 const onClickJustifyRight = () => {
-  console.log('clicked justify right')
+  document.execCommand('justifyRight')
 }
 
 const onClickJustifyCenter = () => {
-  console.log('clicked justify center')
+  document.execCommand('justifyCenter')
 }
 
-const iconClickFuncs: Record<string, React.MouseEventHandler<HTMLImageElement>> = {
+const onClickUnorderedList = () => {
+  document.execCommand('insertUnorderedList')
+}
+const onClickOrderedList = () => {
+  document.execCommand('insertOrderedList')
+}
+
+const iconClickFuncs: Record<string, Function> = {
   'bold': onClickBold,
   'italic': onClickItalic,
   'underline': onClickUnderline,
+  'unorderedList': onClickUnorderedList,
+  'orderedList': onClickOrderedList,
   'justifyLeft': onClickJustifyLeft,
   'justifyRight': onClickJustifyRight,
   'justifyCenter': onClickJustifyCenter

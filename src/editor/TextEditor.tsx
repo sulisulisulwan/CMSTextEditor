@@ -21,7 +21,16 @@ const TextEditor = ({ html, setHtml, style, toolbar }: iTextEditorProps) => {
   let toolbarOptions: iToolbarOptions = {
     disabled: false,
     orientation: 'vertical',
-    icons: ['bold', 'italic', 'underline'],
+    icons: [
+      'bold', 
+      'italic', 
+      'underline', 
+      'justifyLeft', 
+      'justifyCenter', 
+      'justifyRight', 
+      'orderedList', 
+      'unorderedList'
+    ],
     iconImages: defaultIconSrcs,
     iconStyle: {
       height: 15,
@@ -47,6 +56,7 @@ const TextEditor = ({ html, setHtml, style, toolbar }: iTextEditorProps) => {
     return status
   }, {}))
 
+  
   return (
     <div id={'textEditor'}>      
       <Toolbar 
@@ -63,28 +73,39 @@ const TextEditor = ({ html, setHtml, style, toolbar }: iTextEditorProps) => {
           setHtml(e.target.value) 
         }}
         afterChangeEmit={(e: any) => {
+          //This scope WILL contain the most updated DOM data from contenteditable (window.getSelection, document, etc.)
 
-          if (e.type === 'keydown' && ['b', 'i', 'u'].includes(e.key) && e.metaKey) {
-            setToolbarStatus((prevStatus) => ({ ...prevStatus, [keyToFormatMap[e.key]]: { selected: !prevStatus[keyToFormatMap[e.key]].selected} }))
-            return
+          if (isValidMetaKeyCombo(e)) {
+            return setToolbarStatus((prevStatus) => ({ ...prevStatus, [keyToFormatMap[e.key]]: { selected: !prevStatus[keyToFormatMap[e.key]].selected} }))
           }
 
-          if (
-            ['keyup', 'keydown', 'click'].includes(e.type) && ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)
-            || e.type === 'click'
-          ) {
-            const currentFormatInCaret = getFormatFromCaretLocation(window.getSelection())
-            const newToolbarStatus = { ...toolbarStatus}
-            for(let format in toolbarStatus) {
-              newToolbarStatus[format].selected = currentFormatInCaret.includes(formatToNodeNameMap[format]) 
-            }
-            setToolbarStatus(newToolbarStatus)
+          if (userMovedCaret(e)) {
+            return updateToolbarStatusToCaretLocation(toolbarStatus, setToolbarStatus)
           }
 
         }}
       />
     </div>
   )
+}
+
+const userMovedCaret = (e: any) => {
+  return ['keyup', 'keydown', 'click'].includes(e.type) 
+    && ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)
+    || e.type === 'click'
+}
+
+const updateToolbarStatusToCaretLocation = (toolbarStatus: iToolbarStatus, setToolbarStatus: React.Dispatch<React.SetStateAction<iToolbarStatus>>) => {
+  const currentFormatInCaret = getFormatFromCaretLocation(window.getSelection())
+  const newToolbarStatus = { ...toolbarStatus}
+  for(let format in toolbarStatus) {
+    newToolbarStatus[format].selected = currentFormatInCaret.includes(formatToNodeNameMap[format]) 
+  }
+  setToolbarStatus(newToolbarStatus)
+}
+
+const isValidMetaKeyCombo = (e: any) => {
+  return e.type === 'keydown' && ['b', 'i', 'u'].includes(e.key) && e.metaKey
 }
 
 export default TextEditor

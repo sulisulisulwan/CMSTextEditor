@@ -5,7 +5,7 @@ const __dirname = path.dirname(url.fileURLToPath(import.meta.url))
 
 const testAppConfig = {
   mode: 'development',
-  entry: path.resolve(__dirname , './testApp/src/testApp.tsx'),
+  entry: path.resolve(__dirname , './testApp/src/testApp.jsx'),
   module: {
     rules: [
       {
@@ -29,20 +29,20 @@ const testAppConfig = {
     path: path.resolve(__dirname, "./testApp/dist"),
     publicPath: path.resolve(__dirname, "./testApp/dist"),
   },
-  externals: {
-    "react": {
-      "commonjs": "react",
-      "commonjs2": "react",
-      "amd": "react",
-      "root": "React"
-    },
-    "react-dom": {
-        "commonjs": "react-dom",
-        "commonjs2": "react-dom",
-        "amd": "react-dom",
-        "root": "ReactDOM"
-    }
-  },
+  // externals: {
+  //   "react": {
+  //     "commonjs": "react",
+  //     "commonjs2": "react",
+  //     "amd": "react",
+  //     "root": "React"
+  //   },
+  //   "react-dom": {
+  //       "commonjs": "react-dom",
+  //       "commonjs2": "react-dom",
+  //       "amd": "react-dom",
+  //       "root": "ReactDOM"
+  //   }
+  // },
   resolve: {
     extensions: [".js", ".jsx", ".tsx", ".ts"]
   },

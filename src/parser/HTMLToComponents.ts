@@ -32,7 +32,10 @@ class HTMLToComponents {
       'DIV': 'div',
       'U': 'u',
       'P': 'p',
-      'BR': 'br'
+      'BR': 'br',
+      'OL': 'ol',
+      'UL': 'ul',
+      'LI': 'li'
     }
     
     this.nodeHandlers = {
@@ -42,29 +45,31 @@ class HTMLToComponents {
       'U': (node: HTMLElement): iComponent => this.handleUnderlineComponent.bind(this)(node),
       'DIV': (node: HTMLElement): iComponent | null => this.handleDiv.bind(this)(node),
       'P': (node: HTMLElement): iComponent | null => this.handleParagraphComponent.bind(this)(node),
-      'BR': (): null => this.handleLineBreak.bind(this)()
+      'BR': (): null => this.handleLineBreak.bind(this)(),
+      'OL': (node: HTMLElement): iComponent => this.handleOrderedListComponent.bind(this)(node),
+      'UL': (node: HTMLElement): iComponent => this.handleUnorderedListComponent.bind(this)(node),
+      'LI': (node: HTMLElement): iComponent => this.handleListItemComponent.bind(this)(node)
     }
-    
-
   }
+
   resetParser(): void {
     this.parsed = []
     this.currParagraph = null
   }
 
-  parse(textDiv: HTMLElement): iComponent[] {
+  parse(editorDiv: HTMLElement): iComponent[] {
     this.resetParser()
-    const nodesArray = this.wrapFirstTextNodes(textDiv)
+    const nodesArray = this.wrapFirstTextNodes(editorDiv)
     this.parseChildren(nodesArray)
     return this.parsed
   }
   
-  wrapFirstTextNodes(textDiv: HTMLElement): HTMLElement[] {
-    let nodesArray = [].slice.call(textDiv.childNodes)
+  wrapFirstTextNodes(editorDiv: HTMLElement): HTMLElement[] {
+    let nodesArray = [].slice.call(editorDiv.childNodes)
     
     if (nodesArray.length) {
   
-      if (!['P', 'DIV'].includes(nodesArray[0].nodeName)) {
+      if (!['P', 'DIV', 'OL', 'UL'].includes(nodesArray[0].nodeName)) {
         const initialParagraph = document.createElement('p')
         nodesArray = nodesArray.reduce((accum: HTMLElement[], curr: HTMLElement) => {
           if (!['P', 'DIV'].includes(curr.nodeName)) {
@@ -166,6 +171,50 @@ class HTMLToComponents {
     const newComponent = this.handleParagraphComponent(node)
     return newComponent
   }
+
+  handleOrderedListComponent(htmlNode: HTMLElement): iComponent {
+    const content: iComponent[] = []
+    
+    htmlNode.childNodes.forEach(child => {
+      const childComponent = this.nodeHandlers[child.nodeName](child);
+      if (childComponent)
+          content.push(childComponent);
+    });
+    return {
+      type: 'ol',
+      content
+    }
+  }
+
+  handleUnorderedListComponent(htmlNode: HTMLElement): iComponent {
+    const content: iComponent[] = []
+
+    htmlNode.childNodes.forEach(child => {
+      const childComponent = this.nodeHandlers[child.nodeName](child);
+      if (childComponent)
+          content.push(childComponent);
+    });
+    return {
+      type: 'ul',
+      content
+    }
+  }
+
+  handleListItemComponent(htmlNode: HTMLElement): iComponent {
+    const content: iComponent[] = []
+
+    htmlNode.childNodes.forEach(child => {
+      const childComponent = this.nodeHandlers[child.nodeName](child);
+      if (childComponent)
+          content.push(childComponent);
+    });
+    return {
+      type: 'li',
+      content
+    }
+  }
+
+
 
 }
 
