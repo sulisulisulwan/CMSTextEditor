@@ -21,11 +21,17 @@ const App = () => {
       <TextEditor 
         html={html} 
         setHtml={setHtml} 
-        style={{
+        wrapperStyle={{
+          border: 'red 1px solid',
+          height: '80vh'
+        }}
+        contentEditableStyle={{
           background: 'lightgray',
           border: '1px solid gray',
-          height: 400,
-          width: 400,
+          height: '80%',
+          minWidth: 300,
+          width: '50%',
+          overflow: 'scroll'
         }}
         toolbar={null}
       />

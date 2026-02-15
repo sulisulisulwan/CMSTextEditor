@@ -8,13 +8,14 @@ import defaultIconSrcs from './toolbar/defaultToolbarIconMap.js'
 interface iTextEditorProps {
   html: string
   setHtml: React.Dispatch<React.SetStateAction<string>>
-  style: React.CSSProperties
   toolbar?: iToolbarOptions
+  wrapperStyle?: React.CSSProperties
+  contentEditableStyle?: React.CSSProperties
 }
 
 type iToolbarStatus = Record<string, { selected: boolean }>
 
-const TextEditor = ({ html, setHtml, style, toolbar }: iTextEditorProps) => {
+const TextEditor = ({ html, setHtml, toolbar, wrapperStyle, contentEditableStyle }: iTextEditorProps) => {
 
   const contentEditable = React.useRef()
 
@@ -58,14 +59,16 @@ const TextEditor = ({ html, setHtml, style, toolbar }: iTextEditorProps) => {
 
   
   return (
-    <div id={'textEditor'}>      
+    <div id={'textEditor'}
+      style={wrapperStyle}
+    >      
       <Toolbar 
         toolbarOptions={toolbarOptions}
         toolbarStatus={toolbarStatus}
         setToolbarStatus={setToolbarStatus}
       />
       <ContentEditable
-        style={style}
+        style={contentEditableStyle}
         innerref={contentEditable}
         html={html}
         disabled={false}
